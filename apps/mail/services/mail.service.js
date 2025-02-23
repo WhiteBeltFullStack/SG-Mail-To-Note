@@ -23,17 +23,17 @@ const loggedInUser = {
   email: 'Alexander&George@appsus.com',
   fullname: 'George & Sasha ',
 }
-_createMails()
 
 let gMails = []
+_createMails()
 
 function getDefaultFilterAndSorting() {
   const filterAndSort = {
     filterBy: {
       status: 'inbox', //inbox/sent/draft/trash
-      txt: 'Alexander',
-      isRead: true,
-      isStarred: true,
+      txt: '',
+      isRead: false,
+      isStarred: false,
       lables: [],
     },
     sortBy: {
@@ -52,13 +52,16 @@ function query(filterBy = {}, sortBy = {}) {
 
     if (filterBy.status) {
       const regExp = new RegExp(filterBy.status, 'i')
-      mails = mails.filter((mail) => regExp.test(mail.status))
+      mails = mails.filter((mail) => regExp.test(mail.status || 'inbox'))
     }
 
     if (filterBy.txt) {
       const regExp = new RegExp(filterBy.txt, 'i')
       mails = mails.filter(
-        (mail) => regExp.test(mail.body) || regExp.test(mail.subject)
+        (mail) =>
+          regExp.test(mail.body) ||
+          regExp.test(mail.title) ||
+          regExp.test(mail.subject)
       )
     }
 
@@ -68,6 +71,7 @@ function query(filterBy = {}, sortBy = {}) {
     if (filterBy.isStarred) {
       mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
     }
+
     if (filterBy.lables.length) {
       mails = mails.filter((mail) =>
         mail.lables.some((lable) => filterBy.lables.includes(lable))
@@ -89,7 +93,6 @@ function query(filterBy = {}, sortBy = {}) {
         return 0
       })
     }
-
     return mails
   })
 }
@@ -114,9 +117,9 @@ function _createMails() {
   const storageMails = utilService.loadFromStorage(MAIL_KEY)
   if (!storageMails || storageMails.length === 0) {
     const mails = [
-      _createMail((title = 'Puki'), (from = 'puki@puki.com')),
-      _createMail((title = 'Kuki'), (from = 'kuki@kuki.com')),
-      _createMail((title = 'Tuki'), (from = 'tuki@tuki.com')),
+      _createMail('Puki', 'puki@puki.com'),
+      _createMail('Kuki', 'kuki@kuki.com'),
+      _createMail('Tuki', 'tuki@tuki.com'),
     ]
 
     utilService.saveToStorage(mails, MAIL_KEY)
@@ -124,7 +127,7 @@ function _createMails() {
   }
 }
 
-function _createMail(title, from) {
+function _createMail(title = 'Puki', from = 'puki@puki.com') {
   const mail = {
     id: utilService.makeId(),
     title,
@@ -138,6 +141,7 @@ function _createMail(title, from) {
     from,
     to: 'Alexander&George@appsus.com',
   }
+  return mail
 }
 
 function createEmptyMail() {
@@ -157,13 +161,18 @@ function createEmptyMail() {
   return mail
 }
 
+function getFilterFromSearchParams(searchParams) {
+  const defaultSettings = getDefaultFilterAndSorting()
+  const filterBy = {}
+  const sortBy = {}
 
-function getFilterFromSearchParams(searchParams){
+  for (const field in defaultSettings.filterBy) {
+    filterBy[field] = searchParams.get(field) || defaultSettings.filterBy[field]
+  }
 
-    const defaultFilter = getDefaultFilterAndSorting()
-    const filterBy = {}
-    for(const field in defaultFilter){
-        filterBy[field] = searchParams.get(field) || defaultFilter[field]
-    }
-    
+  for (const field in defaultSettings.sortBy) {
+    sortBy[field] = searchParams.get(field) || defaultSettings.sortBy[field]
+  }
+
+  return { filterBy, sortBy }
 }
