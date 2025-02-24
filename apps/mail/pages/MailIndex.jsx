@@ -6,33 +6,47 @@ const { useState, useEffect, useRef } = React
 
 export function MailIndex() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const { filterBy, sortBy } = mailService.getFilterFromSearchParams(searchParams)
-    
+  const { filterBy, sortBy } =
+    mailService.getFilterFromSearchParams(searchParams)
 
   const [mails, setMails] = useState(null)
   const [filter, setFilter] = useState(filterBy)
   const [sort, setSort] = useState(sortBy)
 
   useEffect(() => {
-    setSearchParams({...filter,...sort})
+    setSearchParams({ ...filter, ...sort })
     loadMails()
-  }, [filter,sort])
+  }, [filter, sort])
 
 
-  
-  console.log('mails:',mails)
   function loadMails() {
-      mailService.query(filter).then((mails) => setMails(mails))
-    
-}
+    mailService.query(filter).then((mails) => setMails(mails))
+  }
 
-  
+  function onRemoveMail(mailId) {
+    console.log('Removed')
+  }
 
+  function onChangRead(mailId) {
+    console.log('Read')
+
+  }
+  function onSaveAsNote(mailId) {
+    console.log('send note')
+
+  }
 
   if (!mails) return <p>Loading Mails ...</p>
-  return <section className="container">
-    {/* Filter by folder index/trash/draft/sent */}
-    {/* Filter by search */}
-    <MailList mails={mails} />
-  </section>
+  return (
+    <section className="container">
+      {/* Filter by folder index/trash/draft/sent */}
+      {/* Filter by search */}
+      <MailList
+        mails={mails}
+        onRemoveMail={onRemoveMail}
+        onChangRead={onChangRead}
+        onSaveAsNote={onSaveAsNote}
+      />
+    </section>
+  )
 }

@@ -17,3 +17,9 @@
 /* MAIL APP */
 @import './apps/mail/MailIndex.css';
 @import './apps/mail/MailList.css';
+@import './apps/mail/MailListItem.css';
+@import './apps/mail/OpenMail.css';
+
+@import './basics/mail-vars.css';
+
+

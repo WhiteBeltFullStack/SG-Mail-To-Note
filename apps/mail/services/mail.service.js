@@ -18,14 +18,14 @@ export const mailService = {
 }
 
 const MAIL_KEY = 'mailDB'
+let gMails = []
+
+_createMails()
 
 const loggedInUser = {
   email: 'Alexander&George@appsus.com',
   fullname: 'George & Sasha ',
 }
-
-let gMails = []
-_createMails()
 
 function getDefaultFilterAndSorting() {
   const filterAndSort = {
@@ -45,36 +45,38 @@ function getDefaultFilterAndSorting() {
 }
 
 function query(filterBy = {}, sortBy = {}) {
-  return storageService.query(MAIL_KEY).then((mails) => {
+  return storageService.query(MAIL_KEY).then(mails => {
     if (!mails || !mails.length) {
       mails = gMails
+      // utilService.saveToStorage(mails, MAIL_KEY)
     }
 
     if (filterBy.status) {
       const regExp = new RegExp(filterBy.status, 'i')
-      mails = mails.filter((mail) => regExp.test(mail.status || 'inbox'))
+      mails = mails.filter(mail => regExp.test(mail.status || 'inbox'))
     }
 
     if (filterBy.txt) {
       const regExp = new RegExp(filterBy.txt, 'i')
       mails = mails.filter(
-        (mail) =>
+        mail =>
           regExp.test(mail.body) ||
           regExp.test(mail.title) ||
           regExp.test(mail.subject)
       )
     }
 
-    if (filterBy.isRead) {
-      mails = mails.filter((mail) => mail.isRead === filterBy.isRead)
-    }
-    if (filterBy.isStarred) {
-      mails = mails.filter((mail) => mail.isStarred === filterBy.isStarred)
+    // if (!filterBy.isRead) {
+    //   mails = mails.filter(mail => mail.isRead === filterBy.isRead) // NOT NEEDED AT THE MOMENT MAYBE LATER
+    // }
+    
+    if (!filterBy.isStarred) {
+      mails = mails.filter(mail => mail.isStarred === filterBy.isStarred)
     }
 
     if (filterBy.lables.length) {
-      mails = mails.filter((mail) =>
-        mail.lables.some((lable) => filterBy.lables.includes(lable))
+      mails = mails.filter(mail =>
+        mail.lables.some(lable => filterBy.lables.includes(lable))
       )
     }
 
@@ -122,7 +124,7 @@ function _createMails() {
       _createMail('Tuki', 'tuki@tuki.com'),
     ]
 
-    utilService.saveToStorage(mails, MAIL_KEY)
+    utilService.saveToStorage(MAIL_KEY, mails)
     gMails = mails
   }
 }
