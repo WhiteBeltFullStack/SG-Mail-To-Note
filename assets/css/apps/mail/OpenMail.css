@@ -1,0 +1,47 @@
+.opened-mail {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: var(--mbg1);
+
+}
+
+.mail-header {
+  margin-bottom: 20px;
+}
+
+.mail-header h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--mgray3);
+}
+
+.mail-info {
+  font-size: 14px;
+  color: var(--mgray2);
+}
+
+.mail-info span {
+  display: block;
+  margin: 5px 0;
+}
+
+.mail-body {
+  font-size: 16px;
+  margin: 20px 0;
+  line-height: 1.5;
+  color: var(--mgray2);
+  padding-left: 25px;
+}
+
+.mail-footer {
+  font-size: 14px;
+  color: var(--mgray2);
+}
+
+.read-status {
+  color: var(--mcolor2);
+}
+
+.starred-status {
+  color: var(--mcolor3);
+}

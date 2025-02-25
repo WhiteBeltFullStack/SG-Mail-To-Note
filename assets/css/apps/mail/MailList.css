@@ -1,1 +1,22 @@
- /* mail list */
+.mail-list-section {
+  padding: 0;
+  margin: 0;
+}
+
+.mail-list {
+  background-color: var(--mbg2);
+}
+
+.mail-row {
+  border-bottom: 1px solid var(--mgray1);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mail-row:hover {
+  background-color: var(--mbg3);
+}
+
+.mail-actions button {
+  background-color: var(--mcolor2);
+}
