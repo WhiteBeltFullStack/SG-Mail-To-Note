@@ -1,5 +1,9 @@
 export function NotePreview({ note }) {
-    const {info: { txt },} = note
+    const { txt } = note.info
 
-    return <div className="NotePreview">{txt}</div>
+    return (
+        <div className="NotePreview">
+            {txt}
+        </div>
+    )
 }
