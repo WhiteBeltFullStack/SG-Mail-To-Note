@@ -28,7 +28,7 @@ function _createDemoNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d',
+                    backgroundColor: '#fff',
                 },
                 info: {
                     txt: 'Fullstack Me Baby!',
@@ -44,7 +44,7 @@ function _createDemoNotes() {
                     title: 'Bobi and Me',
                 },
                 style: {
-                    backgroundColor: '#00d',
+                    backgroundColor: '#fff',
                 },
             },
             {
@@ -58,6 +58,9 @@ function _createDemoNotes() {
                         { txt: 'Driving license', doneAt: null },
                         { txt: 'Coding power', doneAt: 187111111 },
                     ],
+                },
+                style: {
+                    backgroundColor: '#fff',
                 },
             },
         ]

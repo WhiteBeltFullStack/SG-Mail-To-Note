@@ -1,0 +1,17 @@
+.NotePreview {
+    width: 240px;
+    min-height: 130px;
+    padding: 16px 16px 0 16px;
+    border: 1px solid transparent;
+    border-color: #e0e0e0;
+    border-radius: 8px;
+    background-color: var(--bg-color, #fff);
+    transition-duration: 0.218s;
+    transition-property: background, border, opacity, box-shadow, transform;
+    transition-timing-function: ease-in;
+}
+
+.NotePreview:hover {
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
