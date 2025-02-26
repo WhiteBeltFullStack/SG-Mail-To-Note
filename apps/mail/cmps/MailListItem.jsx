@@ -10,6 +10,7 @@ export function MailListItem({
   onSaveAsNote,
   expended,
   isExpended,
+  onStarred,
 }) {
   //   const [isExpended, setIsExpended] = useState(false)
   const [isRead, setIsRead] = useState(false)
@@ -31,6 +32,11 @@ export function MailListItem({
     onSaveAsNote(mailId)
   }
 
+  function starred(ev, mailId) {
+    ev.stopPropagation()
+    onStarred(mailId)
+  }
+
   return (
     <React.Fragment>
       <section
@@ -40,32 +46,38 @@ export function MailListItem({
         }}
       >
         <div className="toggle-expand">
-          <span>&#9733; </span>
+          <span onClick={ev => starred(ev, mail.id)}>
+            <img src="assets/img/starred.svg" alt="" className="starred" />{' '}
+          </span>
           <span className="mail-from">{mail.from}</span>
-          <div className="subject-body"></div>
-          <span className="mail-subject">{mail.subject} - </span>
-          <span className="mail-body">{mail.body}</span>
+          <div className="subject-body">
+            <span className="mail-subject">{mail.subject} - </span>
+            <span className="mail-body">{mail.body}</span>
+          </div>
 
           <section className="mail-actions">
             <button
               className="btn btn-remove"
               onClick={ev => removeMail(ev, mail.id)}
             >
-              x
+              <img src="assets\img\trash.svg" alt="" />
             </button>
             <button
               className="btn btn-read"
               onClick={ev => changRead(ev, mail.id)}
             >
-              {' '}
-              r{' '}
+              <img
+                src={`assets/img/${
+                  mail.isRead ? 'envelope-open' : 'envelope-close'
+                }.svg`}
+                alt=""
+              />
             </button>
             <button
               className="btn btn-note"
               onClick={ev => saveAsNote(ev, mail.id)}
             >
-              {' '}
-              n{' '}
+              <img src="assets/img/note.svg" alt="" />
             </button>
           </section>
         </div>

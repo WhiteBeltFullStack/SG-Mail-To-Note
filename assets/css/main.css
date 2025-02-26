@@ -19,6 +19,8 @@
 @import './apps/mail/MailList.css';
 @import './apps/mail/MailListItem.css';
 @import './apps/mail/OpenMail.css';
+@import './apps/mail/MailHeaderFilter.css';
+@import './apps/mail/MailFolderFilter.css';
 
 @import './basics/mail-vars.css';
 

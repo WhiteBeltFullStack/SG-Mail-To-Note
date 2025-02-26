@@ -1,1 +1,9 @@
- /* mail index  */
+.container-index {
+  height: calc(100vh - 57px);
+  background-color: var(--mbg2);
+  overflow: inherit;
+}
+
+.list-folders-container {
+  display: flex;
+}

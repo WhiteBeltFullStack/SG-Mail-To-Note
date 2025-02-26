@@ -1,9 +1,8 @@
-import { useEffect } from 'react'
 import { MailListItem } from './MailListItem.jsx'
 
 const { useState } = React
 
-export function MailList({ mails, onRemoveMail, onChangRead, onSaveAsNote }) {
+export function MailList({ onStarred,mails, onRemoveMail, onChangRead, onSaveAsNote }) {
   const [currId, setCurrId] = useState(null)
 
   function expended(expendedId) {
@@ -16,7 +15,6 @@ export function MailList({ mails, onRemoveMail, onChangRead, onSaveAsNote }) {
 
   return (
     <section className="mail-list-section">
-      <h1>Mail List</h1>
       <ul className="mail-list">
         {mails.map(mail => (
           <li className="mail-row" key={mail.id}>
@@ -27,6 +25,8 @@ export function MailList({ mails, onRemoveMail, onChangRead, onSaveAsNote }) {
               onSaveAsNote={onSaveAsNote}
               expended={expended}
               isExpended={currId === mail.id ? true : false}
+              onStarred={onStarred}
+            
             />
           </li>
         ))}

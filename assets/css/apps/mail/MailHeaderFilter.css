@@ -1,0 +1,97 @@
+.search-filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 5px 20px;
+  background-color: var(--mbg2);
+}
+
+.gmail-logo-hamburger {
+  width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gmail-logo-hamburger .logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.search-filter {
+  flex-grow: 1;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-filter form {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--mgray1);
+  border-radius: 100vh;
+  padding: 0 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  border: 1px solid lightgrey;
+  border-radius: 50%;
+  padding: 1px;
+  background-color: lightgrey;
+}
+
+.search-btn-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.search-filter form input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.search-filter form input::placeholder {
+  color: var(--mgray2);
+}
+
+.logged-acc {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-size: 20px;
+  color: white;
+  font-size: bold;
+  background-color: green;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.gmail-logo-hamburger button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+
+  width: 25px;
+  height: 25px;
+}
