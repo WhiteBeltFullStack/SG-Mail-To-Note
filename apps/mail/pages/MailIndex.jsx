@@ -2,6 +2,7 @@ import { MailHeaderFilter } from '../cmps/MailHeaderFilter.jsx'
 import { MailFolderFilter } from '../cmps/MailFolderFilter.jsx'
 import { MailList } from '../cmps/MailList.jsx'
 import { mailService } from '../services/mail.service.js'
+// import { MailDetails } from './apps/mail/pages/MailDetails.jsx'
 
 const { link, useSearchParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
@@ -23,7 +24,7 @@ export function MailIndex() {
   }, [filter, sort])
 
   useEffect(() => {
-    if(!mails) return
+    if (!mails) return
     const readCount = mails.reduce((count, mail) => {
       return count + (!mail.isRead ? 1 : 0)
     }, 0)
