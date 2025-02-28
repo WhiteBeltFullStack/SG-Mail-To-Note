@@ -1,3 +1,4 @@
+const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
@@ -28,8 +29,12 @@ export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
   return (
     <section className="folders-container">
       <div className="compose-container">
-        <img src="assets/img/pencil.svg" alt="" />
-        <span> Compose</span>
+        {/* <img src="assets/img/pencil.svg" alt="" /> */}
+        <button className="compose-btn">
+          {' '}
+          <img src="assets/img/pencil.svg" alt="" />{' '}
+          <Link to="/mail/compose"> Compose</Link>
+        </button>
       </div>
       <ul>
         {folders.map(folder => (

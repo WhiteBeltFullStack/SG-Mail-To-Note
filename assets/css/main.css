@@ -22,6 +22,7 @@
 @import './apps/mail/MailHeaderFilter.css';
 @import './apps/mail/MailFolderFilter.css';
 @import './apps/mail/MailDetails.css';
+@import './apps/mail/MailCompose.css';
 
 @import './basics/mail-vars.css';
 

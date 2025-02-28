@@ -57,9 +57,22 @@
   margin: 0;
 }
 
-.compose-container span {
+.compose-container button {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
 }
 
 .compose-container img {

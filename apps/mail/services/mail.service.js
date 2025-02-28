@@ -152,8 +152,8 @@ function _createMail(title = 'Puki', from = 'puki@puki.com') {
 
 function createEmptyMail() {
   const mail = {
-    id: utilService.makeId(),
-    title: '',
+    // id: utilService.makeId(),
+    title: 'Alexander & George',
     createdAt: Date.now(),
     subject: '',
     body: '',
@@ -161,7 +161,7 @@ function createEmptyMail() {
     isStarred: false,
     sentAt: null,
     removedAt: null,
-    from: '',
+    from: 'Alexander&George@appsus.com',
     to: '',
   }
   return mail
@@ -171,6 +171,7 @@ function getFilterFromSearchParams(searchParams) {
   const defaultSettings = getDefaultFilterAndSorting()
   const filterBy = {}
   const sortBy = {}
+
 
   for (const field in defaultSettings.filterBy) {
     filterBy[field] = searchParams.get(field) || defaultSettings.filterBy[field]

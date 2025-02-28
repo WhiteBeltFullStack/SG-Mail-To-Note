@@ -50,6 +50,7 @@ export function MailIndex() {
   }
 
   function onSetFilter(filter) {
+    console.log('filter:',filter)
     setFilter(filter)
   }
 

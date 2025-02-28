@@ -6,13 +6,13 @@ export function MailHeaderFilter({ onSetFilter, filter }) {
   const [editFilter, setEditFilter] = useState({ ...filter })
 
   useEffect(() => {
-    onSetFilter(editFilter)
+    onSetFilter({...editFilter,status:filter.status})
   }, [editFilter])
 
   function onHandleChange(ev) {
     let { value, name, type } = ev.target
 
-    setEditFilter(prevFilter => ({ ...prevFilter, [name]: value }))
+    setEditFilter(prevFilter => ({ ...prevFilter, [name]: value,status:prevFilter.status }))
   }
 
   function onSubmitForm(ev) {
