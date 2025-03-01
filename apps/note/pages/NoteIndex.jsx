@@ -1,3 +1,4 @@
+import { NoteAdd } from '../cmps/NoteAdd.jsx'
 import { NoteFilter } from '../cmps/NoteFilter.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/note.service.js'
@@ -25,6 +26,7 @@ export function NoteIndex() {
     
     return (
         <section className="NoteIndex container">
+            <NoteAdd loadNotes={loadNotes}/>
             <NoteFilter />
             <NoteList notes={notes} />
         </section>

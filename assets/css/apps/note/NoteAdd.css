@@ -1,0 +1,49 @@
+.NoteAdd {
+    justify-content: center;
+    align-items: center;
+    margin: 2.0625rem auto;
+    max-width: 598px;
+}
+
+.NoteAdd form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 46px;
+    padding: 7px 16px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.3);
+}
+
+.NoteAdd input {
+    width: 100%;
+    border: none;
+    outline: none;
+    letter-spacing: .00625em;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(32, 33, 36);
+}
+
+.NoteAdd input::placeholder {
+    letter-spacing: .00625em;
+    font-size: 1rem;
+    font-weight: 500; 
+    color: rgb(32, 33, 36);
+}
+
+.NoteAdd button {
+    position: relative;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.87);
+    border: none;
+    cursor: pointer;
+    font-size: .875rem;
+    padding: 8px 24px;
+    border-radius: 4px;
+    transition: background 0.2s ease-in-out;
+}
+
+.NoteAdd button:hover {
+    background: rgba(95, 99, 104, 0.039);
+}
