@@ -3,6 +3,9 @@
     --mbg2: #F6F8FC; /* Gmail light gray */
     --mbg3: #E3E6EA; /* Slightly darker gray */
 
+    
+    --mbg-folder-focus: #a8c7fa; /* Slightly light blue */
+
     --mcolor1: #D93025; /* Gmail red */
     --mcolor2: #1967D2; /* Gmail blue (for buttons/links) */
     --mcolor3: #188038; /* Gmail green (for success messages) */

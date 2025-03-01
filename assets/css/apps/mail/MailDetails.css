@@ -1,0 +1,87 @@
+.mail-details {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: var(--mbg1);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.mail-details .mail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--mgray1);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.mail-details .mail-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--mgray3);
+}
+
+
+
+.mail-details .mail-actions button:hover {
+  background-color: var(--mbg2);
+  border-color: var(--mgray2);
+}
+
+.mail-details .mail-info {
+  font-size: 14px;
+  color: var(--mgray2);
+  margin-bottom: 20px;
+}
+
+.mail-details .mail-from {
+  font-weight: bold;
+  color: var(--mgray3);
+}
+
+.mail-details .mail-to,
+.mail-date {
+  font-style: italic;
+}
+
+.mail-details .mail-body {
+  margin-bottom: 20px;
+}
+
+.mail-details .mail-subject {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--mgray3);
+  margin-bottom: 10px;
+}
+
+.mail-details .mail-body p {
+  color: var(--mgray2);
+  line-height: 1.6;
+}
+
+.mail-details .mail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--mgray1);
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+.mail-details .mail-footer button {
+  background-color: var(--mcolor2);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 100vh;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mail-details .mail-footer button:hover {
+  background-color: #0056b3;
+}

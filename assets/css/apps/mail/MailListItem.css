@@ -5,6 +5,7 @@
   padding: 7px 12px;
   gap: 10px;
   font-size: 14px;
+  border-block-end: 1px solid lightgrey;
 }
 
 .toggle-expand {
@@ -16,10 +17,11 @@
 
 .mail-from {
   font-weight: bold;
-  flex: 1;
+  width: 168px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: max-content;
 }
 
 .subject-body {
@@ -38,11 +40,30 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
   font-size: 16px;
   color: #666;
 }
 
+.mail-actions button img {
+  place-self: center;
+  width: 20px;
+  height: 20px;
+}
+
 .mail-actions button:hover {
   color: black;
+}
+
+.starred {
+  margin-inline-end: 14px;
+  width: 20px;
+  height: 20px;
+}
+
+
+/* .mail-read {
+
+} */
+.mail-unread {
+  background-color: var(--mbg3);
 }

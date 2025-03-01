@@ -15,6 +15,7 @@ export const mailService = {
   createEmptyMail,
   getDefaultFilterAndSorting,
   getFilterFromSearchParams,
+  loggedUser,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -22,9 +23,12 @@ let gMails = []
 
 _createMails()
 
-const loggedInUser = {
-  email: 'Alexander&George@appsus.com',
-  fullname: 'George & Sasha ',
+function loggedUser() {
+  const loggedInUser = {
+    email: 'Alexander&George@appsus.com',
+    fullname: 'George & Sasha ',
+  }
+  return loggedInUser
 }
 
 function getDefaultFilterAndSorting() {
@@ -51,25 +55,25 @@ function query(filterBy = {}, sortBy = {}) {
       // utilService.saveToStorage(mails, MAIL_KEY)
     }
 
-    if (filterBy.status) {
-      const regExp = new RegExp(filterBy.status, 'i')
-      mails = mails.filter(mail => regExp.test(mail.status || 'inbox'))
-    }
-
+    
     if (filterBy.txt) {
       const regExp = new RegExp(filterBy.txt, 'i')
       mails = mails.filter(
         mail =>
           regExp.test(mail.body) ||
-          regExp.test(mail.title) ||
-          regExp.test(mail.subject)
+        regExp.test(mail.title) ||
+        regExp.test(mail.subject)
       )
     }
-
-    // if (!filterBy.isRead) {
-    //   mails = mails.filter(mail => mail.isRead === filterBy.isRead) // NOT NEEDED AT THE MOMENT MAYBE LATER
-    // }
     
+    // if (!filterBy.isRead) {
+      //   mails = mails.filter(mail => mail.isRead === filterBy.isRead) // NOT NEEDED AT THE MOMENT MAYBE LATER
+      // }
+      if (filterBy.status) {
+        const regExp = new RegExp(filterBy.status, 'i')
+        mails = mails.filter(mail => regExp.test(mail.status || 'inbox'))
+      }
+      
     if (!filterBy.isStarred) {
       mails = mails.filter(mail => mail.isStarred === filterBy.isStarred)
     }
@@ -90,7 +94,7 @@ function query(filterBy = {}, sortBy = {}) {
         if (typeof value1 === 'string' && typeof value2 === 'string') {
           return value1.localeCompare(value2) * (order === 1 ? 1 : -1)
         } else if (typeof value1 === 'number' && typeof value2 === 'number') {
-          return (value1 - value2) * (order === 1) ? 1 : -1
+          return (value1 - value2) * (order === 1 ? 1 : -1)
         }
         return 0
       })
@@ -148,8 +152,8 @@ function _createMail(title = 'Puki', from = 'puki@puki.com') {
 
 function createEmptyMail() {
   const mail = {
-    id: utilService.makeId(),
-    title: '',
+    // id: utilService.makeId(),
+    title: 'Alexander & George',
     createdAt: Date.now(),
     subject: '',
     body: '',
@@ -157,7 +161,7 @@ function createEmptyMail() {
     isStarred: false,
     sentAt: null,
     removedAt: null,
-    from: '',
+    from: 'Alexander&George@appsus.com',
     to: '',
   }
   return mail
@@ -167,6 +171,7 @@ function getFilterFromSearchParams(searchParams) {
   const defaultSettings = getDefaultFilterAndSorting()
   const filterBy = {}
   const sortBy = {}
+
 
   for (const field in defaultSettings.filterBy) {
     filterBy[field] = searchParams.get(field) || defaultSettings.filterBy[field]
