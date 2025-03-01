@@ -28,14 +28,16 @@ export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
 
   return (
     <section className="folders-container">
-      <div className="compose-container">
-        {/* <img src="assets/img/pencil.svg" alt="" /> */}
-        <button className="compose-btn">
-          {' '}
-          <img src="assets/img/pencil.svg" alt="" />{' '}
-          <Link to="/mail/compose"> Compose</Link>
-        </button>
-      </div>
+      <Link to="/mail/compose">
+        {' '}
+        <div className="compose-container">
+          {/* <img src="assets/img/pencil.svg" alt="" /> */}
+          <button className="compose-btn">
+            {' '}
+            <img src="assets/img/pencil.svg" alt="" /> Compose
+          </button>
+        </div>
+      </Link>
       <ul>
         {folders.map(folder => (
           <li

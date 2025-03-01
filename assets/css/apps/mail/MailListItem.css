@@ -59,3 +59,11 @@
   width: 20px;
   height: 20px;
 }
+
+
+/* .mail-read {
+
+} */
+.mail-unread {
+  background-color: var(--mbg3);
+}

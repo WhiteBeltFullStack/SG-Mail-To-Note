@@ -94,7 +94,7 @@ function query(filterBy = {}, sortBy = {}) {
         if (typeof value1 === 'string' && typeof value2 === 'string') {
           return value1.localeCompare(value2) * (order === 1 ? 1 : -1)
         } else if (typeof value1 === 'number' && typeof value2 === 'number') {
-          return (value1 - value2) * (order === 1) ? 1 : -1
+          return (value1 - value2) * (order === 1 ? 1 : -1)
         }
         return 0
       })

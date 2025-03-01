@@ -1,7 +1,7 @@
 import { mailService } from '../services/mail.service.js'
 
-import { showErrorMsg } from '../services/event-bus.service.js'
-import { showSuccessMsg } from '../services/event-bus.service.js'
+import { showErrorMsg } from '..apps/mail/services/event-bus.service.js'
+import { showSuccessMsg } from '..apps/mail/services/event-bus.service.js'
 
 const { useParams, useNavigate } = ReactRouterDOM
 
@@ -20,24 +20,37 @@ export function MailCompose() {
     mailService.get(mailId).then(setMailCompose)
   }
 
-  function onSaveCompose(ev) {
+  function onSaveCompose(ev, action) {
     if (ev) ev.preventDefault()
+
+    if ((action === 'draft' && !mailCompose.to) || !mailCompose.subject) {
+      navigate('/mail')
+      return
+    }
     if (!mailCompose.to || !mailCompose.subject) {
       showErrorMsg(`No Subject or Adress`)
       return
     }
+    console.log('action:', action)
     const updateMail = {
       ...mailCompose,
       sentAt: Date.now(),
       createdAt: Date.now(),
-      status: 'sent',
+      status: action === 'send' ? 'sent' : 'draft',
     }
 
-    mailService
-      .save(updateMail)
-      .then(() => showSuccessMsg('Mail has successfully saved!'))
-      .catch(() => showErrorMsg(`couldn't save Mail`))
-      .finally(() => navigate('/mail'))
+    if (action === 'send') {
+      mailService
+        .save(updateMail)
+        .then(() => showSuccessMsg('Mail has successfully saved!'))
+        .catch(() => showErrorMsg(`couldn't save Mail`))
+    } else {
+      mailService
+        .save(updateMail)
+        .then(() => showSuccessMsg('Mail moved to Draft!'))
+        .catch(() => showErrorMsg(`couldn't save Mail`))
+    }
+    navigate('/mail')
   }
 
   function onHandleChange({ target }) {
@@ -60,13 +73,15 @@ export function MailCompose() {
     <section className="compose-section">
       <header className="compose-header">
         <h3 className="compose-new-message">New Message</h3>
-        {/* <span className="compose-minimize">_</span> */}
-        <span className="compose-close" onClick={onSaveCompose}>
+        <span
+          className="compose-close"
+          onClick={ev => onSaveCompose(ev, 'draft')}
+        >
           X
         </span>
       </header>
 
-      <form action="" onSubmit={onSaveCompose}>
+      <form action="" onSubmit={ev => onSaveCompose(ev, 'send')}>
         <label htmlFor="to"></label>
         <input
           type="email"

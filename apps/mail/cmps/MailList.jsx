@@ -2,11 +2,10 @@ import { MailListItem } from './MailListItem.jsx'
 
 const { useState } = React
 
-export function MailList({ onStarred,mails, onRemoveMail, onChangRead, onSaveAsNote }) {
+export function MailList({ onStarred,mails, onRemoveMail, onChangeRead, onSaveAsNote }) {
   const [currId, setCurrId] = useState(null)
 
   function expended(expendedId) {
-    console.log('press')
 
     setCurrId(prevExpendedId =>
       prevExpendedId === expendedId ? null : expendedId
@@ -21,7 +20,7 @@ export function MailList({ onStarred,mails, onRemoveMail, onChangRead, onSaveAsN
             <MailListItem
               mail={mail}
               onRemoveMail={onRemoveMail}
-              onChangRead={onChangRead}
+              onChangeRead={onChangeRead}
               onSaveAsNote={onSaveAsNote}
               expended={expended}
               isExpended={currId === mail.id ? true : false}
@@ -34,3 +33,4 @@ export function MailList({ onStarred,mails, onRemoveMail, onChangRead, onSaveAsN
     </section>
   )
 }
+

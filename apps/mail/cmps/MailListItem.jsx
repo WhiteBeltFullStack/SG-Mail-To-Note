@@ -6,25 +6,27 @@ const { Link } = ReactRouterDOM
 export function MailListItem({
   mail,
   onRemoveMail,
-  onChangRead,
+  onChangeRead,
   onSaveAsNote,
   expended,
   isExpended,
   onStarred,
 }) {
-  //   const [isExpended, setIsExpended] = useState(false)
   const [isRead, setIsRead] = useState(false)
   const [currId, setCurrId] = useState(null)
 
   function removeMail(ev, mailId) {
     ev.stopPropagation()
-
-    onRemoveMail(mailId)
+    if (mail.status) {
+      onRemoveMail(mailId, false)
+    } else {
+      onRemoveMail(mailId)
+    }
   }
 
   function changRead(ev, mailId) {
     ev.stopPropagation()
-    onChangRead(mailId)
+    onChangeRead(mailId)
   }
 
   function saveAsNote(ev, mailId) {
@@ -40,7 +42,7 @@ export function MailListItem({
   return (
     <React.Fragment>
       <section
-        className="mail-item "
+        className={`mail-item ${mail.isRead ? 'mail-read' : 'mail-unread'}`}
         onClick={() => {
           expended(mail.id)
         }}
@@ -82,7 +84,7 @@ export function MailListItem({
           </section>
         </div>
       </section>
-      {isExpended && <OpenedMail mail={mail} />}
+      {isExpended && <OpenedMail mail={mail} onChangeRead={onChangeRead} />}
     </React.Fragment>
   )
 }

@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM
 
-export function OpenedMail({ mail }) {
+export function OpenedMail({ onChangeRead, mail }) {
   return (
     <section className="opened-mail">
       <div className="mail-header">
@@ -25,7 +25,7 @@ export function OpenedMail({ mail }) {
         )}
         {mail.isStarred && <span className="starred-status">Starred</span>}
 
-        <button>
+        <button onClick={() => onChangeRead(mail.id, true)}>
           <Link to={`/mail/${mail.id}`}>Open E-Mail</Link>
         </button>
       </div>
