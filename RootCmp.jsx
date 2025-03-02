@@ -11,21 +11,22 @@ import { MailDetails } from './apps/mail/pages/MailDetails.jsx'
 import { MailCompose } from './apps/mail/pages/MailCompose.jsx'
 
 export function RootCmp() {
-    return <Router>
-        <section className="root-cmp">
-            <AppHeader />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/mail" element={<MailIndex />} />
-                <Route path="/mail/:mailId" element ={<MailDetails/>} />
+  return (
+    <Router>
+      <section className="root-cmp">
+        <AppHeader />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/mail" element={<MailIndex />}>
+            <Route path="/mail/compose" element={<MailCompose />} />
+            <Route path="/mail/:mailId" element={<MailDetails />} />
+          </Route>
 
-                <Route path="/mail/compose" element ={<MailCompose/>} />
-
-
-                <Route path="/note" element={<NoteIndex />} />
-            </Routes>
-            <UserMsg />
-        </section>
+          <Route path="/note" element={<NoteIndex />} />
+        </Routes>
+        <UserMsg />
+      </section>
     </Router>
+  )
 }

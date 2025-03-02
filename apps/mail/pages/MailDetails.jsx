@@ -1,4 +1,4 @@
-import { showErrorMsg } from "../../../services/event-bus.service.js"
+import { showErrorMsg } from '../services/event-bus.service.js'
 import { mailService } from "../services/mail.service.js"
 
 const { useParams, useNavigate, Link } = ReactRouterDOM

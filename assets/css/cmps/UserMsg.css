@@ -1,7 +1,7 @@
 .user-msg {
     position: fixed;
     bottom: -100px;
-    right: .5em;
+    left: .5em;
     padding: .5em;
     background-color: #111;
 }
@@ -11,12 +11,17 @@
     transition: bottom .5s;
 }
 
+
+
+
 .user-msg.success {
-    background-color: var(--color2);
+    color: var(--mbg1);
+    background-color: var(--mgray3);
 }
 
 .user-msg.error {
-    background-color: var(--color3);
+    color: var(--mbg1);
+    background-color: var(--mgray3);
 }
 
 .user-msg button{
