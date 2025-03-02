@@ -61,7 +61,8 @@ function query(filterBy = {}, sortBy = {}) {
         mail =>
           regExp.test(mail.body) ||
           regExp.test(mail.title) ||
-          regExp.test(mail.subject)
+          regExp.test(mail.subject)||
+          regExp.test(mail.from)
       )
     }
 

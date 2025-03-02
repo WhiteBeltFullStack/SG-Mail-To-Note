@@ -79,7 +79,7 @@ export function MailListItem({
       >
         <div className="toggle-expand">
           <span onClick={ev => starred(ev, mail.id)}>
-            <img src="assets/img/starred.svg" alt="" className="starred" />{' '}
+            <img src={`assets/img/${mail.isStarred ? 'yellow-star': 'starred'}.svg`} alt="" className="starred" />{' '}
           </span>
           <span className="mail-from">{mail.from}</span>
           <div className="subject-body">
