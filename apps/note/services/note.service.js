@@ -2,7 +2,9 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 export const noteService = {
-    query
+    query,
+    add,
+    getEmptyNote,
 }
 
 window.ns = noteService
@@ -16,6 +18,27 @@ function query() {
         .then(notes => {
             return notes
         })
+}
+
+function add(newNote) {
+    return storageService.post(NOTE_KEY, newNote)
+}
+
+function getEmptyNote() {
+    let note = {
+        id: '',
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: '#fff',
+        },
+        info: {
+            txt: 'New note',
+        },
+    }
+
+    return note
 }
 
 function _createDemoNotes() {    
