@@ -12,12 +12,9 @@ export function MailListItem({
   isExpended,
   onStarred,
 }) {
-  const [isRead, setIsRead] = useState(false)
-  const [currId, setCurrId] = useState(null)
-
   function removeMail(ev, mailId) {
     ev.stopPropagation()
-    if (mail.status) {
+    if (mail.status === 'trash') {
       onRemoveMail(mailId, false)
     } else {
       onRemoveMail(mailId)
@@ -36,26 +33,61 @@ export function MailListItem({
 
   function starred(ev, mailId) {
     ev.stopPropagation()
-    onStarred(mailId)
+
+    if (!mail.status || mail.status !== 'starred') {
+      onStarred(mailId, true)
+    } else {
+      onStarred(mailId, !mail.status)
+    }
+  }
+
+  function formatDate(date) {
+    const now = new Date()
+    const inputDate = new Date(date)
+    const diffInMs = now - inputDate
+    const diffInHours = diffInMs / (1000 * 60 * 60)
+
+    switch (true) {
+      case diffInHours < 24:
+        return inputDate.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        })
+
+      case inputDate.getFullYear() === now.getFullYear():
+        return inputDate.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+        })
+
+      default:
+        return inputDate.toLocaleDateString('en-US', {
+          month: 'numeric',
+          day: 'numeric',
+          year: 'numeric',
+        })
+    }
   }
 
   return (
     <React.Fragment>
       <section
-        className={`mail-item ${mail.isRead ? 'mail-read' : 'mail-unread'}`}
+        className={`mail-item ${mail.isRead ? 'mail-unread' : ' mail-read'}`}
         onClick={() => {
           expended(mail.id)
         }}
       >
         <div className="toggle-expand">
           <span onClick={ev => starred(ev, mail.id)}>
-            <img src="assets/img/starred.svg" alt="" className="starred" />{' '}
+            <img src={`assets/img/${mail.isStarred ? 'yellow-star': 'starred'}.svg`} alt="" className="starred" />{' '}
           </span>
           <span className="mail-from">{mail.from}</span>
           <div className="subject-body">
             <span className="mail-subject">{mail.subject} - </span>
             <span className="mail-body">{mail.body}</span>
           </div>
+
+          <div className="mail-list-time">{formatDate(mail.sentAt)}</div>
 
           <section className="mail-actions">
             <button

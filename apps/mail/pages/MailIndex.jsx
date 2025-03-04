@@ -4,10 +4,10 @@ import { MailList } from '../cmps/MailList.jsx'
 import { mailService } from '../services/mail.service.js'
 // import { MailDetails } from './apps/mail/pages/MailDetails.jsx'
 
-import { showErrorMsg } from '..apps/mail/services/event-bus.service.js'
-import { showSuccessMsg } from '..apps/mail/services/event-bus.service.js'
+import { showErrorMsg } from '../services/event-bus.service.js' 
+import { showSuccessMsg } from '../services/event-bus.service.js'
 
-const { link, useSearchParams } = ReactRouterDOM
+const { Link, useSearchParams,Outlet ,useParams} = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 export function MailIndex() {
@@ -20,15 +20,13 @@ export function MailIndex() {
   const [filter, setFilter] = useState(filterBy)
   const [isReadCounter, setIsReadCounter] = useState(0)
   const [sort, setSort] = useState(sortBy)
+  const {mailId} = useParams()
+  console.log('mailId:',mailId)
 
   useEffect(() => {
+    loadMails()
     setSearchParams({ ...filter, ...sort })
-    loadMails()
   }, [filter, sort])
-
-  useEffect(() => {
-    loadMails()
-  }, [mails])
 
   useEffect(() => {
     if (!mails) return
@@ -42,22 +40,29 @@ export function MailIndex() {
     mailService.query(filter).then(mails => setMails(mails))
   }
 
-
-
   function onRemoveMail(mailId, toTrash = true) {
+    console.log('mailId:', mailId)
     if (toTrash) {
       setMails(prevMails => {
-        return prevMails.map(mail => {
-          if (mail.id !== mailId) return mail
-          const updatedMail = { ...mail, removedAt: Date.now(), status: 'trash' }
+        return prevMails.filter(mail => {
+          console.log('entered return on onRemoveMail')
+          if (mail.id === mailId) {
+            const updatedMail = {
+              ...mail,
+              removedAt: Date.now(),
+              status: 'trash',
+            }
 
-          mailService
-            .save(updatedMail)
-            .then(() => {
-              showSuccessMsg('Mail move to Trash..')
-            })
-            .catch(() => showErrorMsg('Couldnt move to trash..'))
-          return updatedMail
+            mailService
+              .save(updatedMail)
+              .then(() => {
+                console.log('then inside moving trash')
+                showSuccessMsg('Mail move to Trash..')
+              })
+              .catch(() => showErrorMsg('Couldnt move to trash..'))
+          } else {
+            return mail
+          }
         })
       })
     } else {
@@ -95,8 +100,54 @@ export function MailIndex() {
   function onSaveAsNote(mailId) {
     console.log('send note')
   }
-  function onStarred(mailId) {
-    console.log('starred')
+
+  function onStarred(mailId,moveToStarred) {
+    console.log('moveToStarred:',moveToStarred)
+    
+    if(moveToStarred){
+      setMails(prevMails => {
+        return prevMails.filter(mail => {
+          if (mail.id === mailId) {
+            const updatedMail = {
+              ...mail,
+              isStarred: !mail.isStarred,
+              status: 'starred',
+            }
+  
+            mailService
+              .save(updatedMail)
+              .then(() => {
+                showSuccessMsg('Mail move to Starred..')
+              })
+              .catch(() => showErrorMsg('Couldnt move to Starred..'))
+          } else {
+            return mail
+          }
+        })
+      })
+    }else{
+       setMails(prevMails => {
+        return prevMails.filter(mail => {
+          if (mail.id === mailId) {
+            const updatedMail = {
+              ...mail,
+              isStarred: !mail.isStarred,
+              status: 'inbox',
+            }
+  
+            mailService
+              .save(updatedMail)
+              .then(() => {
+                showSuccessMsg('Mail move to Inbox..')
+              })
+              .catch(() => showErrorMsg('Couldnt move to Inbox..'))
+          } else {
+            return mail
+          }
+        })
+      })
+    }
+  
   }
 
   function onSetFilter(filter) {
@@ -117,13 +168,14 @@ export function MailIndex() {
           isReadCounter={isReadCounter}
         />
 
-        <MailList
+        {!mailId && <MailList
           mails={mails}
           onRemoveMail={onRemoveMail}
           onChangeRead={onChangeRead}
           onSaveAsNote={onSaveAsNote}
           onStarred={onStarred}
-        />
+        />}
+        <Outlet/>
       </section>
     </section>
   )
