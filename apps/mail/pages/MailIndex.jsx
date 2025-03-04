@@ -96,7 +96,12 @@ export function MailIndex() {
   }
 
   function onSaveAsNote(mailId) {
-    console.log('send note')
+    mailService
+      .mailToNote(mailId)
+      .then(() => {
+        showSuccessMsg('Note Added..')
+      })
+      .catch(() => showErrorMsg(`Mail isn't Read..`))
   }
 
   function onStarred(mailId, moveToStarred) {

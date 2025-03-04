@@ -16,6 +16,7 @@ export const mailService = {
   getDefaultFilterAndSorting,
   getFilterFromSearchParams,
   loggedUser,
+  mailToNote
 }
 
 const MAIL_KEY = 'mailDB'
@@ -268,4 +269,18 @@ function getFilterFromSearchParams(searchParams) {
   }
 
   return { filterBy, sortBy }
+}
+
+function mailToNote(mailId) {
+  return storageService.get(MAIL_KEY, mailId).then(mail => {
+    const note = {
+      createdAt: mail.createdAt,
+      type: 'NoteTxt',
+      isPinned: false,
+      style: { backgroundColor: '#00d' },
+      info: { txt: mail.body },
+    }
+    storageService.post('noteDB', note)
+    return note
+  })
 }
