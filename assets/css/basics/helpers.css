@@ -21,3 +21,32 @@
 .grid {
     display: grid;
 }
+
+.note-transition {
+    transition-duration: 0.218s;
+    transition-property: background, border, opacity, box-shadow, transform;
+    transition-timing-function: ease-in;
+}
+
+.note-close-btn {
+    display: inline-block;
+    position: relative;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-inline-end: 15px;
+    /* height: 36px; */
+    padding: 8px 24px;
+    border-radius: 4px;
+    transition: background 0.2s ease-in-out;
+    letter-spacing: .0178571429em;
+    font-size: .875rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+    /* line-height: 1.25rem; */
+        
+}
+
+.note-close-btn:hover {
+    background: rgba(95, 99, 104, 0.039);
+}

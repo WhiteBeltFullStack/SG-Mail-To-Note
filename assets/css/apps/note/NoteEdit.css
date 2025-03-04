@@ -1,0 +1,51 @@
+.note-edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-edit-main {
+    background: white;
+    border-radius: 8px;
+    width: 598px;
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.note-edit-content {
+    padding: 12px 16px;
+    background: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #202124;
+    letter-spacing: 0.00625em;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 100%;
+    height: auto;
+    min-height: 100px; /* Adjust as needed */
+    max-height: 400px; /* Set your desired maximum height */
+    max-width: 598px; /* Set maximum width */
+    margin: 0 auto; /* Center the div */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: none;
+    outline: none;
+    resize: none; /* Disable resizing */
+}
+
+.note-edit-footer {
+    height: 36px;
+}
+
+.note-edit-icons {
+    padding-inline-start: 10px;
+    margin: 0 3px;
+}
