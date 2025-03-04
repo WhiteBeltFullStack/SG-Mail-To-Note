@@ -1,9 +1,11 @@
-const { Link } = ReactRouterDOM
+const { Link, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
   const [filterToEdit, setFilterToEdit] = useState({ ...(filter || 'inbox') })
   const [readCount, setReadCount] = useState(isReadCounter)
+
+  const navigate = useNavigate()
 
   function onHandleClick(ev, folder) {
     setFilterToEdit(prevFilter => {
@@ -31,7 +33,6 @@ export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
       <Link to="/mail/compose">
         {' '}
         <div className="compose-container">
-          {/* <img src="assets/img/pencil.svg" alt="" /> */}
           <button className="compose-btn">
             {' '}
             <img src="assets/img/pencil.svg" alt="" /> Compose

@@ -1,18 +1,16 @@
 .mail-details {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
   width: 100%;
   /* margin: 30px auto; */
   padding: 20px;
   background-color: var(--mbg1);
   border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-inline-end: 5px;
 
   height: 80vh;
 }
-
 
 .mail-details .mail-header {
   display: flex;
@@ -28,8 +26,6 @@ flex-direction: column;
   font-weight: bold;
   color: var(--mgray3);
 }
-
-
 
 .mail-details .mail-actions button:hover {
   background-color: var(--mbg2);

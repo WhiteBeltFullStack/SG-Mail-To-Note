@@ -61,7 +61,7 @@ function query(filterBy = {}, sortBy = {}) {
         mail =>
           regExp.test(mail.body) ||
           regExp.test(mail.title) ||
-          regExp.test(mail.subject)||
+          regExp.test(mail.subject) ||
           regExp.test(mail.from)
       )
     }
@@ -69,13 +69,16 @@ function query(filterBy = {}, sortBy = {}) {
     // if (!filterBy.isRead) {
     //   mails = mails.filter(mail => mail.isRead === filterBy.isRead) // NOT NEEDED AT THE MOMENT MAYBE LATER
     // }
+
     if (filterBy.status) {
       const regExp = new RegExp(filterBy.status, 'i')
-      mails = mails.filter(mail => regExp.test(mail.status || 'inbox'))
-    }
-
-    if (!filterBy.isStarred) {
-      mails = mails.filter(mail => mail.isStarred === filterBy.isStarred)
+      if (filterBy.status === 'inbox') {
+        mails = mails.filter(
+          mail => regExp.test(mail.status || 'inbox') || mail.isStarred
+        )
+      } else {
+        mails = mails.filter(mail => regExp.test(mail.status || 'inbox'))
+      }
     }
 
     if (filterBy.lables.length) {

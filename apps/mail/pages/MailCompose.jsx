@@ -14,6 +14,7 @@ export function MailCompose() {
 
   useEffect(() => {
     if (mailId) loadMail()
+      console.log('mailId:',mailId)
   }, [mailId])
 
   function loadMail() {
@@ -103,6 +104,7 @@ export function MailCompose() {
         />
 
         <textarea
+        className='mail-area'
           name="body"
           cols="30"
           rows="10"

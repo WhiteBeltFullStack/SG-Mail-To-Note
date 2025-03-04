@@ -61,6 +61,8 @@
   height: 20px;
 }
 
+
+
 .mail-unread {
   background-color: var(--mbg3);
 }
@@ -76,4 +78,11 @@
 .mail-item:hover .mail-actions {
   display: flex;
   gap: 8px;
+}
+
+
+.yellow-star{
+  margin-inline-end: 14px;
+  width: 15px;
+  height: 15px;
 }

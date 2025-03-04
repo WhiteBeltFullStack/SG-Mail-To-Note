@@ -15,7 +15,7 @@ export function MailList({ onStarred,mails, onRemoveMail, onChangeRead, onSaveAs
   return (
    
     <section className="mail-list-section">
-      {console.log('list rendered',mails) }
+      {/* {console.log('list rendered',mails) } */}
      
       <ul className="mail-list">
         {mails.map(mail => (

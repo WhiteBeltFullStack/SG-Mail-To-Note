@@ -2,7 +2,6 @@
   padding: 20px;
   font-family: Arial, sans-serif;
   background-color: var(--mbg1);
-
 }
 
 .mail-header {
@@ -47,7 +46,6 @@
   color: var(--mcolor3);
 }
 
-
 .opened-mail button {
   background: none;
   border: 1px solid var(--mgray1);
@@ -62,7 +60,13 @@
 }
 
 .opened-mail button:hover {
-  background: var(--mgray1); 
+  background: var(--mgray1);
   border-color: var(--mgray2);
-  color: black; 
+  color: black;
+}
+
+.preview-mail-btns {
+  display: flex;
+  justify-self: end;
+  gap: 5px;
 }

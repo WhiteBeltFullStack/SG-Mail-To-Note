@@ -4,10 +4,10 @@ import { MailList } from '../cmps/MailList.jsx'
 import { mailService } from '../services/mail.service.js'
 // import { MailDetails } from './apps/mail/pages/MailDetails.jsx'
 
-import { showErrorMsg } from '../services/event-bus.service.js' 
+import { showErrorMsg } from '../services/event-bus.service.js'
 import { showSuccessMsg } from '../services/event-bus.service.js'
 
-const { Link, useSearchParams,Outlet ,useParams} = ReactRouterDOM
+const { Link, useSearchParams, Outlet, useParams } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
 export function MailIndex() {
@@ -20,8 +20,7 @@ export function MailIndex() {
   const [filter, setFilter] = useState(filterBy)
   const [isReadCounter, setIsReadCounter] = useState(0)
   const [sort, setSort] = useState(sortBy)
-  const {mailId} = useParams()
-  console.log('mailId:',mailId)
+  const { mailId } = useParams()
 
   useEffect(() => {
     loadMails()
@@ -41,7 +40,6 @@ export function MailIndex() {
   }
 
   function onRemoveMail(mailId, toTrash = true) {
-    console.log('mailId:', mailId)
     if (toTrash) {
       setMails(prevMails => {
         return prevMails.filter(mail => {
@@ -101,53 +99,52 @@ export function MailIndex() {
     console.log('send note')
   }
 
-  function onStarred(mailId,moveToStarred) {
-    console.log('moveToStarred:',moveToStarred)
-    
-    if(moveToStarred){
-      setMails(prevMails => {
-        return prevMails.filter(mail => {
+  function onStarred(mailId, moveToStarred) {
+    setMails(prevMails => {
+      if (filter.status === 'inbox') {
+        return prevMails.map(mail => {
           if (mail.id === mailId) {
             const updatedMail = {
               ...mail,
               isStarred: !mail.isStarred,
-              status: 'starred',
+              status: mail.isStarred ? 'inbox' : 'starred',
             }
-  
+            console.log('moveToStarred:', moveToStarred)
             mailService
               .save(updatedMail)
               .then(() => {
-                showSuccessMsg('Mail move to Starred..')
+                showSuccessMsg(`Mail moved to ${updatedMail.status}..`)
               })
-              .catch(() => showErrorMsg('Couldnt move to Starred..'))
-          } else {
-            return mail
+              .catch(() =>
+                showErrorMsg(`Couldn't move to ${updatedMail.status}..`)
+              )
+
+            return updatedMail
           }
+          return mail
         })
-      })
-    }else{
-       setMails(prevMails => {
+      } else if (filter.status === 'starred') {
         return prevMails.filter(mail => {
           if (mail.id === mailId) {
             const updatedMail = {
               ...mail,
-              isStarred: !mail.isStarred,
+              isStarred: false,
               status: 'inbox',
             }
-  
             mailService
               .save(updatedMail)
               .then(() => {
-                showSuccessMsg('Mail move to Inbox..')
+                showSuccessMsg('Mail moved to Inbox..')
               })
-              .catch(() => showErrorMsg('Couldnt move to Inbox..'))
-          } else {
-            return mail
+              .catch(() => showErrorMsg("Couldn't move to Inbox.."))
+            return false
           }
+          return true
         })
-      })
-    }
-  
+      }
+
+      return prevMails
+    })
   }
 
   function onSetFilter(filter) {
@@ -168,14 +165,18 @@ export function MailIndex() {
           isReadCounter={isReadCounter}
         />
 
-        {!mailId && <MailList
-          mails={mails}
-          onRemoveMail={onRemoveMail}
-          onChangeRead={onChangeRead}
-          onSaveAsNote={onSaveAsNote}
-          onStarred={onStarred}
-        />}
-        <Outlet/>
+        {!mailId && (
+          <MailList
+            mails={mails}
+            onRemoveMail={onRemoveMail}
+            onChangeRead={onChangeRead}
+            onSaveAsNote={onSaveAsNote}
+            onStarred={onStarred}
+          />
+        )}
+
+
+        <Outlet />
       </section>
     </section>
   )
