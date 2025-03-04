@@ -10,16 +10,16 @@ export function MailCompose() {
   const [mailCompose, setMailCompose] = useState(mailService.createEmptyMail())
 
   const navigate = useNavigate()
-  const { mailId } = useParams()
+  const { draftId } = useParams()
 
   useEffect(() => {
-    if (mailId) loadMail()
-      console.log('mailId:',mailId)
-  }, [mailId])
+    if (draftId) loadMail()
+  }, [draftId])
 
   function loadMail() {
-    mailService.get(mailId).then(setMailCompose)
+    mailService.get(draftId).then(setMailCompose)
   }
+  
 
   function onSaveCompose(ev, action) {
     if (ev) ev.preventDefault()
@@ -104,7 +104,7 @@ export function MailCompose() {
         />
 
         <textarea
-        className='mail-area'
+          className="mail-area"
           name="body"
           cols="30"
           rows="10"

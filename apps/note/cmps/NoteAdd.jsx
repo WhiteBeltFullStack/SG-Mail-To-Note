@@ -18,7 +18,7 @@ export function NoteAdd({ loadNotes }) {
         const newNote = noteService.getEmptyNote()
         newNote.info.txt = noteTxt
         
-        noteService.add(newNote)
+        noteService.save(newNote)
             .then(() => {            
                 setNoteTxt('')
                 loadNotes()
@@ -32,7 +32,7 @@ export function NoteAdd({ loadNotes }) {
         <section className="NoteAdd flex">
             <form onSubmit={onAddNote}>
                 <input type="text" placeholder="Take a note..." value={noteTxt} onChange={handleChange}/>
-                <button>Add</button>
+                <button className="note-close-btn">Add</button>
             </form>
         </section>
     )

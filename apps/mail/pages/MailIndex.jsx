@@ -175,7 +175,6 @@ export function MailIndex() {
           />
         )}
 
-
         <Outlet />
       </section>
     </section>
