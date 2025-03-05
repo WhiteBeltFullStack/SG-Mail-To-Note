@@ -16,7 +16,7 @@ export const mailService = {
   getDefaultFilterAndSorting,
   getFilterFromSearchParams,
   loggedUser,
-  mailToNote
+  mailToNote,
 }
 
 const MAIL_KEY = 'mailDB'
@@ -50,6 +50,7 @@ function getDefaultFilterAndSorting() {
 }
 
 function query(filterBy = {}, sortBy = {}) {
+  console.log('sortBy:', sortBy)
   return storageService.query(MAIL_KEY).then(mails => {
     if (!mails || !mails.length) {
       mails = gMails
@@ -95,14 +96,23 @@ function query(filterBy = {}, sortBy = {}) {
         const value1 = mail1[field]
         const value2 = mail2[field]
 
+        console.log('value1:',value1)
+        console.log('value2:',value2)
+
         if (typeof value1 === 'string' && typeof value2 === 'string') {
           return value1.localeCompare(value2) * (order === 1 ? 1 : -1)
         } else if (typeof value1 === 'number' && typeof value2 === 'number') {
           return (value1 - value2) * (order === 1 ? 1 : -1)
+        } else if (typeof value1 === 'boolean' && typeof value2 === 'boolean') {
+          return (
+            (value1 === value2 ? 0 : value1 ? -1 : 1) * (order === 1 ? 1 : -1)
+          )
         }
+
         return 0
       })
     }
+    console.log('mails:',mails)
     return mails
   })
 }
@@ -266,6 +276,9 @@ function getFilterFromSearchParams(searchParams) {
 
   for (const field in defaultSettings.sortBy) {
     sortBy[field] = searchParams.get(field) || defaultSettings.sortBy[field]
+    if (field === 'order') {
+      sortBy[field] = parseInt(sortBy[field], 10) || 1
+    }
   }
 
   return { filterBy, sortBy }

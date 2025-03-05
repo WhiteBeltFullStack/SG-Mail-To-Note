@@ -36,7 +36,7 @@ export function MailIndex() {
   }, [mails])
 
   function loadMails() {
-    mailService.query(filter).then(mails => setMails(mails))
+    mailService.query(filter, sort).then(mails => setMails(mails))
   }
 
   function onRemoveMail(mailId, toTrash = true) {
@@ -152,6 +152,10 @@ export function MailIndex() {
     })
   }
 
+  function onSetSort(sorting) {
+    setSort(sorting)
+  }
+
   function onSetFilter(filter) {
     setFilter(filter)
   }
@@ -172,11 +176,13 @@ export function MailIndex() {
 
         {!mailId && (
           <MailList
+            onSetSort={onSetSort}
             mails={mails}
             onRemoveMail={onRemoveMail}
             onChangeRead={onChangeRead}
             onSaveAsNote={onSaveAsNote}
             onStarred={onStarred}
+            sort={sort}
           />
         )}
 

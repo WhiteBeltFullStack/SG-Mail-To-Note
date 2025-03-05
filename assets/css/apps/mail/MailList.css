@@ -1,19 +1,23 @@
 .mail-list-section {
   padding: 0;
   margin: 0;
+  margin-inline-end: 15px;
+
   padding-inline-end: 10px;
   width: 100%;
+
+  background-color: white;
 }
 
 .mail-list {
-max-width: 83vw;
+  max-width: 83vw;
 
   display: flex;
   flex-direction: column;
   min-height: 80vh;
   background-color: #ffffff;
   border-radius: 10px;
-  overflow: auto; 
+  overflow: auto;
 }
 
 .mail-row {
@@ -30,4 +34,7 @@ max-width: 83vw;
   background-color: var(--mcolor2);
 }
 
-
+.mail-list-header-filter {
+  background-color: white;
+  width: 100%;
+}

@@ -1,22 +1,31 @@
 import { MailListItem } from './MailListItem.jsx'
+import { MailSort } from './MailSort.jsx'
 
 const { useState } = React
 
-export function MailList({ onStarred,mails, onRemoveMail, onChangeRead, onSaveAsNote }) {
+export function MailList({
+  onStarred,
+  mails,
+  onRemoveMail,
+  onChangeRead,
+  onSaveAsNote,
+  onSetSort,
+  sort,
+}) {
   const [currId, setCurrId] = useState(null)
-  
+
   function expended(expendedId) {
-    
     setCurrId(prevExpendedId =>
       prevExpendedId === expendedId ? null : expendedId
     )
   }
-  
+
   return (
-   
     <section className="mail-list-section">
-      {/* {console.log('list rendered',mails) } */}
-     
+      <header className="mail-list-header-filter">
+        <MailSort onSetSort={onSetSort}  sort={sort}/>
+      </header>
+
       <ul className="mail-list">
         {mails.map(mail => (
           <li className="mail-row" key={mail.id}>
@@ -28,7 +37,6 @@ export function MailList({ onStarred,mails, onRemoveMail, onChangeRead, onSaveAs
               expended={expended}
               isExpended={currId === mail.id ? true : false}
               onStarred={onStarred}
-            
             />
           </li>
         ))}
@@ -36,4 +44,3 @@ export function MailList({ onStarred,mails, onRemoveMail, onChangeRead, onSaveAs
     </section>
   )
 }
-

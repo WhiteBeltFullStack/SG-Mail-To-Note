@@ -1,0 +1,48 @@
+.mail-sorting-cmp {
+  display: flex;
+  align-items: center;
+  /* background-color: var(--mbg2); */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.mail-sort-by {
+  padding: 8px;
+  border: 1px solid var(--mgray1);
+  border-radius: 4px;
+  background-color: var(--mbg1);
+  color: var(--mgray2);
+  font-size: 14px;
+
+  outline: none;
+}
+
+.mail-dir {
+  margin-left: 10px;
+}
+
+.mail-dir:checked + label {
+  color: var(--mcolor2);
+}
+
+.order-dir {
+  font-size: 18px;
+  color: var(--mgray2);
+  cursor: pointer;
+  margin-inline-start: 15px;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--mgray1);
+  border-radius: 4px;
+  background-color: var(--mbg1);
+  cursor: pointer;
+  display: none;
+}
+
+input[type='checkbox']:checked {
+  background-color: var(--mcolor2);
+}
