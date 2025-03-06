@@ -2,7 +2,8 @@ import { User } from './User.jsx'
 
 const { useState, useEffect } = React
 
-export function MailHeaderFilter({ onSetFilter, filter }) {
+export function MailHeaderFilter({ onSetFilter, filter ,
+  onSetToggleMenu}) {
   const [editFilter, setEditFilter] = useState({ ...filter })
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export function MailHeaderFilter({ onSetFilter, filter }) {
   return (
     <header className="search-filter-header">
       <section className='gmail-logo-hamburger'>
-        <button><img src="assets/img/hamburger.svg" alt="" /></button>
+        <button className='collapse-btn' onClick={onSetToggleMenu}><img src="assets/img/hamburger.svg" alt="" /></button>
         <div className='logo'>GS-Mail</div>
         </section>
      

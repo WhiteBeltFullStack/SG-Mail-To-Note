@@ -1,7 +1,7 @@
 import { OpenedMail } from './OpenedMail.jsx'
 
 const { useState, useEffect, useRef } = React
-const { Link } = ReactRouterDOM
+const { Link ,useNavigate} = ReactRouterDOM
 
 export function MailListItem({
   mail,
@@ -12,6 +12,9 @@ export function MailListItem({
   isExpended,
   onStarred,
 }) {
+
+
+
   function removeMail(ev, mailId) {
     ev.stopPropagation()
     if (mail.status === 'trash') {
@@ -74,7 +77,7 @@ export function MailListItem({
       <section
         className={`mail-item ${mail.isRead ? 'mail-unread' : ' mail-read'}`}
         onClick={() => {
-          expended(mail.id)
+          expended(mail.id,mail.status)
         }}
       >
         <div className="toggle-expand">

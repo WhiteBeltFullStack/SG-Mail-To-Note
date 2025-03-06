@@ -79,3 +79,27 @@
   padding: 0;
   margin: 0;
 }
+
+.compose-container:hover .compose-btn {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+}
+
+.collapse.folder-name {
+  display: none;
+}
+
+.collapse.folders-container {
+  width: 80px;
+  min-width: 80px;
+}
+
+.collapse.compose-text {
+  display: none;
+}
+
+.collapse.compose-container {
+  width: 50px;
+  height: 40px;
+  margin-inline-start: auto;
+}

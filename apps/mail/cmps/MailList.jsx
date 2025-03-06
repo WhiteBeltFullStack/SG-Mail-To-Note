@@ -1,6 +1,6 @@
 import { MailListItem } from './MailListItem.jsx'
 import { MailSort } from './MailSort.jsx'
-
+const { Link, useNavigate } = ReactRouterDOM
 const { useState } = React
 
 export function MailList({
@@ -13,8 +13,14 @@ export function MailList({
   sort,
 }) {
   const [currId, setCurrId] = useState(null)
+  const navigate = useNavigate()
 
-  function expended(expendedId) {
+  function expended(expendedId, status) {
+    console.log('status:', status)
+    if (status === 'draft') {
+      navigate(`/mail/compose/${expendedId}`)
+      return
+    }
     setCurrId(prevExpendedId =>
       prevExpendedId === expendedId ? null : expendedId
     )
@@ -23,7 +29,7 @@ export function MailList({
   return (
     <section className="mail-list-section">
       <header className="mail-list-header-filter">
-        <MailSort onSetSort={onSetSort}  sort={sort}/>
+        <MailSort onSetSort={onSetSort} sort={sort} />
       </header>
 
       <ul className="mail-list">

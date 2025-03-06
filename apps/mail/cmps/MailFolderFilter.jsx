@@ -1,7 +1,13 @@
 const { Link, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
+export function MailFolderFilter({
+  toggleMenu,
+  onSetFilter,
+  filter,
+  isReadCounter,
+}) {
+  console.log('toggleMenu:', toggleMenu)
   const [filterToEdit, setFilterToEdit] = useState({ ...(filter || 'inbox') })
   const [readCount, setReadCount] = useState(isReadCounter)
 
@@ -29,13 +35,16 @@ export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
   }, [filterToEdit.status])
 
   return (
-    <section className="folders-container">
+    <section className={`folders-container ${toggleMenu ? 'collapse' : ''}`}>
       <Link to="/mail/compose">
         {' '}
-        <div className="compose-container">
+        <div className={`compose-container ${toggleMenu ? 'collapse' : ''}`}>
           <button className="compose-btn">
             {' '}
-            <img src="assets/img/pencil.svg" alt="" /> Compose
+            <img src="assets/img/pencil.svg" alt="" />{' '}
+            <span className={`compose-text ${toggleMenu ? 'collapse' : ''}`}>
+              Compose
+            </span>
           </button>
         </div>
       </Link>
@@ -48,8 +57,9 @@ export function MailFolderFilter({ onSetFilter, filter, isReadCounter }) {
           >
             <img src={`assets/img/${folder}.svg`} alt="Inbox" />
             {
-              <span>
-                {folder.charAt(0).toUpperCase() + folder.slice(1)}
+              <span className={`folder-name ${toggleMenu ? 'collapse' : ''}`}>
+                {folder.charAt(0).toUpperCase() + folder.slice(1)}{' '}
+                {/* IF TOGGLE TRUE NOT EXIST */}
                 {folder === 'inbox' && <span> ({readCount}) </span>}
               </span>
             }

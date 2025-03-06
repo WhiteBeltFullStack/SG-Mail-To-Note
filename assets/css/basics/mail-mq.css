@@ -1,0 +1,20 @@
+@media (max-width: 920px) {
+  .folder-name {
+    display: none;
+  }
+
+  .folders-container {
+    width: 80px;
+    min-width: 80px;
+  }
+
+  .compose-text {
+    display: none;
+  }
+
+  .compose-container {
+    width: 50px;
+    height: 40px;
+    margin-inline-start: auto;
+  }
+}

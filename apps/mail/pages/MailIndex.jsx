@@ -20,7 +20,9 @@ export function MailIndex() {
   const [filter, setFilter] = useState(filterBy)
   const [isReadCounter, setIsReadCounter] = useState(0)
   const [sort, setSort] = useState(sortBy)
+  const [toggleMenu, setToggleMenu] = useState(false)
   const { mailId } = useParams()
+
 
   useEffect(() => {
     loadMails()
@@ -152,6 +154,10 @@ export function MailIndex() {
     })
   }
 
+  function onSetToggleMenu() {
+    setToggleMenu(prevState => !prevState)
+  }
+
   function onSetSort(sorting) {
     setSort(sorting)
   }
@@ -164,7 +170,9 @@ export function MailIndex() {
   return (
     <section className="container-index">
       {/* Filter by search */}
-      <MailHeaderFilter onSetFilter={onSetFilter} filter={filter} />
+      <MailHeaderFilter onSetFilter={onSetFilter} filter={filter} 
+         onSetToggleMenu={onSetToggleMenu}
+      />
 
       {/* Filter by folder index/trash/draft/sent */}
       <section className="list-folders-container">
@@ -172,6 +180,7 @@ export function MailIndex() {
           onSetFilter={onSetFilter}
           filter={filter}
           isReadCounter={isReadCounter}
+          toggleMenu={toggleMenu}
         />
 
         {!mailId && (

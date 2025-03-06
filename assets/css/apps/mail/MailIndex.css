@@ -2,6 +2,8 @@
   height: calc(100vh - 57px);
   background-color: var(--mbg2);
   overflow: inherit;
+
+  font-family: Google sans;
 }
 
 .list-folders-container {

@@ -26,6 +26,7 @@ export function MailCompose() {
 
     if ((action === 'draft' && !mailCompose.to) || !mailCompose.subject) {
       navigate('/mail')
+      showErrorMsg(`Draft hasnt been saved Due-no Email`)
       return
     }
     if (!mailCompose.to || !mailCompose.subject) {
