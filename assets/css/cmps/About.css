@@ -1,0 +1,31 @@
+.container.about {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #b8bcf0, #bfb5c7);
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+
+  width: 50vw;
+  margin: 200px auto;
+}
+
+.about-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.about-text {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.about-signature, .george , .sasha {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  font-family: 'Cursive', sans-serif;
+}

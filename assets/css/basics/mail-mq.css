@@ -1,3 +1,9 @@
+/* @media (max-width: 1026px) {
+  .mail-list {
+    max-width: 83vw;
+  }
+} */
+
 @media (max-width: 920px) {
   .folder-name {
     display: none;
@@ -18,3 +24,9 @@
     margin-inline-start: auto;
   }
 }
+/* 
+@media (width< 920px) {
+  .mail-list {
+    max-width: 80vw;
+  }
+} */

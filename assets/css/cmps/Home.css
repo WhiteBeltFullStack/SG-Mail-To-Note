@@ -1,33 +1,91 @@
- /* home */
-
-.home {
-    background-color: var(--bg2);
+/* Container Styles */
+.container.home {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Google sans;
 }
 
-.home .box-container {
-    padding: 1em 0;
+.box-container {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.home .box1 {
-    background-color: var(--color1);
-    min-height: 10em;
+.box1,
+.box2 {
+  width: 100%;
+  max-width: 500px;
+  min-height: 400px; /* Adjust based on your preference */
+}
+/* Demo Mail Styles */
+.demo-mail-details {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  height: 500px;
+
 }
 
-.home .box2 {
-    background-color: var(--color2);
-    min-height: 10em;
+.demo-mail-header {
+  background: #4caf50;
+  color: white;
+  padding: 12px;
+  border-radius: 6px 6px 0 0;
+  text-align: center;
 }
 
- @media (min-width: 750px) {
-    .home .box-container {
-        display: flex;
-        flex-direction: row-reverse;
-    }
-    .home .box1 {
-        flex: 1
-    }
-    .home .box2 {
-        width: 30vw;
-    }
-    
+.demo-mail-title {
+  font-size: 1.8em;
+  margin: 0;
+}
+
+.demo-mail-info {
+  margin-top: 15px;
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.5;
+}
+
+.demo-mail-from,
+.demo-mail-to,
+.demo-mail-date {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.demo-mail-body {
+  margin-top: 15px;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #333;
+}
+
+.demo-mail-subject {
+  font-weight: bold;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .box1,
+  .box2 {
+    width: 100%;
+  }
+
+  .demo-mail-title {
+    font-size: 1.6em;
+  }
+
+  .demo-mail-info {
+    font-size: 0.9em;
+  }
+
+  .demo-mail-details {
+    overflow-y: scroll;
+  }
 }
