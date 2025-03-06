@@ -1,7 +1,7 @@
 import { OpenedMail } from './OpenedMail.jsx'
 
 const { useState, useEffect, useRef } = React
-const { Link ,useNavigate} = ReactRouterDOM
+const { Link, useNavigate } = ReactRouterDOM
 
 export function MailListItem({
   mail,
@@ -12,9 +12,6 @@ export function MailListItem({
   isExpended,
   onStarred,
 }) {
-
-
-
   function removeMail(ev, mailId) {
     ev.stopPropagation()
     if (mail.status === 'trash') {
@@ -77,7 +74,7 @@ export function MailListItem({
       <section
         className={`mail-item ${mail.isRead ? 'mail-unread' : ' mail-read'}`}
         onClick={() => {
-          expended(mail.id,mail.status)
+          expended(mail.id, mail.status)
         }}
       >
         <div className="toggle-expand">
@@ -100,12 +97,14 @@ export function MailListItem({
 
           <section className="mail-actions">
             <button
+              title="remove"
               className="btn btn-remove"
               onClick={ev => removeMail(ev, mail.id)}
             >
               <img src="assets\img\trash.svg" alt="" />
             </button>
             <button
+              title="read"
               className="btn btn-read"
               onClick={ev => changRead(ev, mail.id)}
             >
@@ -117,6 +116,7 @@ export function MailListItem({
               />
             </button>
             <button
+              title="send note"
               className="btn btn-note"
               onClick={ev => saveAsNote(ev, mail.id)}
             >
