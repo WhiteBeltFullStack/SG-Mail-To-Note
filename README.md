@@ -16,9 +16,7 @@ No backend — all data is stored in the browser's local storage asynchronously,
 
 ## Getting Started
 
-### Prerequisites
 
-- Node.js and npm installed on your machine
 
 ### Installation
 
