@@ -1,17 +1,27 @@
 # SG-Mail-To-Note
 
-A simple Python script that fetches emails from an IMAP inbox and sends them to a Notion database.
+A simple React app that lets you save and manage your mail notes locally using async local storage.  
+No backend — all data is stored in the browser's local storage asynchronously, simulating a backend.
+
+---
 
 ## Features
 
-- Connects to an email inbox via IMAP
-- Parses email subject and body
-- Forwards the content to a Notion database using the Notion API
+- Create, edit, and delete mail notes  
+- Data persistence using async local storage  
+- React-based UI with a clean and simple interface  
+- No server or backend required  
 
-## Setup
+---
 
-1. **Clone the repository:**
+## Getting Started
 
-```bash
-git clone https://github.com/WhiteBeltFullStack/SG-Mail-To-Note.git
-cd SG-Mail-To-Note
+### Prerequisites
+
+- Node.js and npm installed on your machine
+
+### Installation
+
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/WhiteBeltFullStack/SG-Mail-To-Note.git
